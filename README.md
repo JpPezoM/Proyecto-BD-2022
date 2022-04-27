@@ -7,9 +7,6 @@ XV Arica y Parinacota
 LA ESTRELLA DE ARICA 
 www.estrellaarica.cl
 
-Arica365
-www.arica365.cl
-
 ARICA HOY
 www.aricahoy.cl
 
