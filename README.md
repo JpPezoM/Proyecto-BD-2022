@@ -46,4 +46,13 @@ http://www.soychile.cl/arica/
 Digital Fm Arica
 http://www.digitalfm.cl/
 
+Radio Estacion
+http://www.radioestacion.cl
+
+Arica365
+http://www.arica365.cl
+
+Presa24 Arica y Parinacota
+http://www.prensa24.cl
+
 
