@@ -55,4 +55,22 @@ http://www.arica365.cl
 Presa24 Arica y Parinacota
 http://www.prensa24.cl
 
+Arica TV
+http://www.arica.tv
+
+Region XV
+http://www.Regionxv.cl
+
+Frontera Norte
+http://www.fronteranorte.cl
+
+Arica es noticia
+http://www.aricaesnoticia.cl
+
+Arica informativa
+http://www.aricainformativa.cl
+
+Concta2
+http://www.conecta2tv.cl
+
 
