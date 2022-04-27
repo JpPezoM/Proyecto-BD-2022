@@ -1,5 +1,5 @@
 # Proyecto-BD-2022
-##nombres:
+## Nombres:
 Victor Silva
 Jorge Andrade
 Juan Pablo Pezo
