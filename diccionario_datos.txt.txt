@@ -1,7 +1,19 @@
 Datos|Tipo de Datos|Ejemplo
-URL  |String       |"https://www.elmorrocotudo.cl/noticia/sociedad/ilegales-y-desproporcionadas-corte-de-arica-anulo-expulsion-de-11-extranjeros-desde"
-titulo|String      |""Ilegales" y "desproporcionadas": Corte de Arica anuló expulsión de 11 extranjeros desde Chile"
+URL|String|"https://www.elmorrocotudo.cl/noticia/sociedad/ilegales-y-desproporcionadas-corte-de-arica-anulo-expulsion-de-11-extranjeros-desde"
+titulo|String|""Ilegales" y "desproporcionadas": Corte de Arica anuló expulsión de 11 extranjeros desde Chile"
 fechaPubli|Date|2021-07-15
 contenidoText|String|"La Corte de Apelaciones de Arica anuló los decretos de expulsión dictados por la Intendencia Regional en contra de 11 ciudadanos extranjeros, quienes habrían ingresado clandestinamente a territorio chileno."
 nombrePrensa|String|"El Morrocotudo"
 fechaCreacion|Date|
+region|string|
+pais|string|
+idioma|string|
+nombreDueño|string|
+personaNatural|booleano|
+fechaDeAdquisicion|Date|
+nombreMencion|string|
+paginaWikipedia|booleano|
+profesion|string|
+fechaNacimiento|date|
+nacionalidad|string|
+popularidad|float|
