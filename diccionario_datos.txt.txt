@@ -4,16 +4,16 @@ titulo|String|""Ilegales" y "desproporcionadas": Corte de Arica anuló expulsió
 fechaPubli|Date|2021-07-15
 contenidoText|String|"La Corte de Apelaciones de Arica anuló los decretos de expulsión dictados por la Intendencia Regional en contra de 11 ciudadanos extranjeros, quienes habrían ingresado clandestinamente a territorio chileno."
 nombrePrensa|String|"El Morrocotudo"
-fechaCreacion|Date|
-region|string|
-pais|string|
-idioma|string|
-nombreDueño|string|
-personaNatural|booleano|
+fechaCreacion|Date|"2005"
+region|string|"Arica y parinacota"
+pais|string|"Chile"
+idioma|string|"Español"
+nombreDueño|string|"Jorge Dominguez"
+personaNatural|booleano|True
 fechaDeAdquisicion|Date|
-nombreMencion|string|
-paginaWikipedia|booleano|
-profesion|string|
-fechaNacimiento|date|
-nacionalidad|string|
-popularidad|float|
+nombreMencion|string|"Gabriel Boric"
+paginaWikipedia|booleano|"https://es.wikipedia.org/wiki/Gabriel_Boric"
+profesion|string|"presidente"
+fechaNacimiento|date|"11 de febrero 1986"
+nacionalidad|string|"Chileno"
+popularidad|float|2031.12
