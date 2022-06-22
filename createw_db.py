@@ -26,7 +26,9 @@ cur.execute("USE Proyectobd")
 #cur.execute("CREATE TABLE administrar(fecha DATE,nombreMedio VARCHAR(100) ,nombreDueño VARCHAR(100),FOREIGN KEY (nombreMedio) REFERENCES medioPrensa(nombre),FOREIGN KEY (nombreDueño) REFERENCES dueño(nombre),PRIMARY KEY(fecha,nombreMedio,nombreDueño))")
 #cur.execute("CREATE TABLE noticia(url VARCHAR(100) PRIMARY KEY, nombreMedio VARCHAR(100), fecha DATE, titulo VARCHAR(100), contenido VARCHAR(100), FOREIGN KEY (nombreMedio) REFERENCES medioPrensa(nombre))")
 #cur.execute("CREATE TABLE persona(nombre VARCHAR(100) PRIMARY KEY, fechaNacimiento DATE, profesion VARCHAR(100), nacionalidad VARCHAR(100))")
-cur.execute("CREATE TABLE mencionar(urlNoticia VARCHAR(100), nombrePersona VARCHAR(100), FOREIGN KEY (urlNoticia) REFERENCES noticia(url), FOREIGN KEY (nombrePersona) REFERENCES persona(nombre), PRIMARY KEY(urlNoticia, nombrePersona))")
+#cur.execute("CREATE TABLE mencionar(urlNoticia VARCHAR(100), nombrePersona VARCHAR(100), FOREIGN KEY (urlNoticia) REFERENCES noticia(url), FOREIGN KEY (nombrePersona) REFERENCES persona(nombre), PRIMARY KEY(urlNoticia, nombrePersona))")
+cur.execute("CREATE TABLE popularidad(idPopularidad VARCHAR(100) PRIMARY KEY, fecha DATE, trafico VARCHAR(100))")
+cur.execute("CREATE TABLE evaluar(nombrePersona VARCHAR(100), idPopularidad VARCHAR(100), FOREIGN KEY (nombrePersona) REFERENCES persona(nombre), FOREIGN KEY (idPopularidad) REFERENCES popularidad(idPopularidad), PRIMARY KEY(nombrePersona, idPopularidad))")
 
 cur.execute("describe medioPrensa")
 # Show results
