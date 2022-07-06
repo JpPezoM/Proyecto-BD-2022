@@ -5,8 +5,8 @@ import sys
 # Connect to MariaDB Platform
 try:
     conn = mariadb.connect(
-        user="jp",
-        password="jp",
+        user="jorge",
+        password="jorge25",
         host="localhost",
         port=3306,
 
@@ -22,4 +22,6 @@ cur.execute("USE Proyectobd;")
 #¿Cuántas noticias fueron publicadas por cada medio de prensa?
 cur.execute("SELECT m.nombre, count(*) FROM medioPrensa m JOIN noticia n ON m.nombre=n.nombreMedio GROUP BY n.nombreMedio ORDER BY count(*) DESC;")
 
-#
+# Show results
+for row in cur:
+    print(row)
