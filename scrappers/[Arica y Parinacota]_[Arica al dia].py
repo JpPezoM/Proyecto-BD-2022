@@ -22,7 +22,7 @@ except mariadb.Error as e:
 session = HTMLSession()
 ## URL que escrapear
 
-listaURL=["https://www.elmorrocotudo.cl/noticia/medioambiente/atentos-recomendaciones-sag-confirmo-mosca-de-la-fruta-en-importante-valle-pro", "https://www.elmorrocotudo.cl/noticia/salud/servicio-de-salud-de-arica-vacunara-contra-covid-e-influenza-en-los-barrios-durante-va", "https://www.elmorrocotudo.cl/noticia/economia/cristian-echeverriala-incertidumbre-todo-nivel-va-continuar-por-dos-o-tres-anos", "https://www.elmorrocotudo.cl/noticia/medioambiente/pescadores-capturan-pez-remo-en-arica-japoneses-lo-asocian-terremotos-y-maldic", "https://www.elmorrocotudo.cl/noticia/medioambiente/primer-tribunal-ambiental-admite-tramite-nuevas-causas-por-declaracion-de-hume"]
+listaURL=["https://www.aricaldia.cl/en-tres-mil-millones-de-pesos-fue-avaluado-contrabando-decomisado-en-ruta-11-ch/", "https://www.aricaldia.cl/vuelve-la-fiesta-de-la-integracion-azapena-platos-tipicos-y-shows-artisticos-en-el-reencuentro-de-la-comunidades/", "https://www.aricaldia.cl/consagran-iglesia-san-santiago-de-belen/", "https://www.aricaldia.cl/sag-confirma-brote-de-mosca-de-la-fruta-en-el-valle-de-azapa/", "https://www.aricaldia.cl/copa-de-libertadores-que-gano-colo-colo-1991-llega-a-nuestra-ciudad-todos-tendran-la-oportunidad-de-tomarse-una-foto-con-imponente-trofeo/"]
 
 ## Simular que estamos utilizando un navegador web
 USER_AGENT_LIST = [
@@ -51,8 +51,8 @@ headers = {'user-agent':random.choice(USER_AGENT_LIST) }
 
 
 ## Analizar ("to parse") el contenido
-xpath_title="//div//h1"
-xpath_text="//div[@class='content content-node']//p"
+xpath_title="//div//h6"
+xpath_text="//div[@class='column-two-third single']//p"
 
 
 
@@ -62,6 +62,11 @@ cur = conn.cursor()
 cur.execute("USE Proyectobd;")
 
 cont = 0
+
+
+cur.execute("INSERT INTO medioPrensa (idioma, region, pais, nombre, url, fechaCreacion) VALUES ('español','Arica y parinacota','Chile','Arica al dia','https://www.aricaldia.cl','2003/01/01')")
+cur.execute("INSERT INTO dueño VALUES ('Jessica Molina',true);")
+cur.execute("INSERT INTO administrar VALUES ('2003/01/01', 'Arica al dia', 'Jessica Molina');")
 
 for u in listaURL:
     response = session.get(u,headers=headers)
@@ -87,8 +92,8 @@ for u in listaURL:
 
     #print(text)
 
-    idNoticia = "El Morrocotudo " + str(cont)
-    query= f"INSERT INTO noticia (idNoticia,url,nombreMedio,fecha,titulo,contenido) VALUES ('{idNoticia}', '{u}', 'El Morrocotudo', '2022/07/15', '{title}', '{text}')"
+    idNoticia = "Arica al dia " + str(cont)
+    query= f"INSERT INTO noticia (idNoticia,url,nombreMedio,fecha,titulo,contenido) VALUES ('{idNoticia}', '{u}', 'Arica al dia', '2022/07/15', '{title}', '{text}')"
 
     cur.execute(query)
     conn.commit()

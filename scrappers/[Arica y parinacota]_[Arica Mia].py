@@ -22,7 +22,7 @@ except mariadb.Error as e:
 session = HTMLSession()
 ## URL que escrapear
 
-listaURL=["https://www.elmorrocotudo.cl/noticia/medioambiente/atentos-recomendaciones-sag-confirmo-mosca-de-la-fruta-en-importante-valle-pro", "https://www.elmorrocotudo.cl/noticia/salud/servicio-de-salud-de-arica-vacunara-contra-covid-e-influenza-en-los-barrios-durante-va", "https://www.elmorrocotudo.cl/noticia/economia/cristian-echeverriala-incertidumbre-todo-nivel-va-continuar-por-dos-o-tres-anos", "https://www.elmorrocotudo.cl/noticia/medioambiente/pescadores-capturan-pez-remo-en-arica-japoneses-lo-asocian-terremotos-y-maldic", "https://www.elmorrocotudo.cl/noticia/medioambiente/primer-tribunal-ambiental-admite-tramite-nuevas-causas-por-declaracion-de-hume"]
+listaURL=["https://www.aricamia.cl/cge-programo-mantencion-de-la-red-electrica-en-arica-para-este-lunes-18/", "https://www.aricamia.cl/proyecto-de-renovacion-de-redes-de-agua-potable-alcanza-un-100-en-su-parte-hidraulica/", "https://www.aricamia.cl/subsecretario-de-telecomunicciones-se-reune-con-autoridades-locales-para-verificar-estado-de-la-conectividad-en-la-region/", "https://www.aricamia.cl/gore-lanza-consulta-ciudadana-para-elegir-las-100-mejores-ideas-para-la-region/", "https://www.aricamia.cl/alcalde-espindola-celebra-implementacion-de-ley-de-cambio-climatico/"]
 
 ## Simular que estamos utilizando un navegador web
 USER_AGENT_LIST = [
@@ -52,7 +52,8 @@ headers = {'user-agent':random.choice(USER_AGENT_LIST) }
 
 ## Analizar ("to parse") el contenido
 xpath_title="//div//h1"
-xpath_text="//div[@class='content content-node']//p"
+xpath_text="//div[@class='entry-content clearfix']//p"
+#xpath_date="//span[@class='entry-meta-date updated']//a"
 
 
 
@@ -63,6 +64,11 @@ cur.execute("USE Proyectobd;")
 
 cont = 0
 
+
+cur.execute("INSERT INTO medioPrensa (idioma, region, pais, nombre, url, fechaCreacion) VALUES ('español','Arica y parinacota','Chile','Arica Mia','https://www.aricamia.cl','2004/01/01')")
+cur.execute("INSERT INTO dueño VALUES ('Julio Urquhart Matheu',true);")
+cur.execute("INSERT INTO administrar VALUES ('2003/01/01', 'Arica Mia', 'Julio Urquhart Matheu');")
+
 for u in listaURL:
     response = session.get(u,headers=headers)
 
@@ -71,7 +77,6 @@ for u in listaURL:
     #print(title)
 
     #Fecha de la noticia
-
 
     #Texto de la noticia
     list_p = response.html.xpath(xpath_text)
@@ -87,8 +92,8 @@ for u in listaURL:
 
     #print(text)
 
-    idNoticia = "El Morrocotudo " + str(cont)
-    query= f"INSERT INTO noticia (idNoticia,url,nombreMedio,fecha,titulo,contenido) VALUES ('{idNoticia}', '{u}', 'El Morrocotudo', '2022/07/15', '{title}', '{text}')"
+    idNoticia = "Arica Mia " + str(cont)
+    query= f"INSERT INTO noticia (idNoticia,url,nombreMedio,fecha,titulo,contenido) VALUES ('{idNoticia}', '{u}', 'Arica Mia', '2022/07/15', '{title}', '{text}')"
 
     cur.execute(query)
     conn.commit()

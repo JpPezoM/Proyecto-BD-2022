@@ -36,40 +36,40 @@ response = session.get(URL,headers=headers)
 
 ## Analizar ("to parse") el contenido
 xpath_url ="//meta[@property='og:url']//@content"
-xpath_noticias="//div[@class='col-md-9 clearfix']//p"
+xpath_noticias="//div[@class='node']//a"
 
 #URL de la noticia
-url = response.html.xpath(xpath_url)
-print(url)
+#url = response.html.xpath(xpath_url)
+#print(url)
 
 #Titulo de la noticia
-title = response.html.xpath(xpath_title)[0].text
-print(title)
+title = response.html.xpath(xpath_noticias)
+print(title[2])
 
 #Fecha de la noticia
 
 
 #Texto de la noticia
-list_p = response.html.xpath(xpath_text)
+#list_p = response.html.xpath(xpath_text)
 
-text=""
-for p in list_p:
-        content = p.text
-        content = w3lib.html.remove_tags(content)
-        content = w3lib.html.replace_escape_chars(content)
-        content = html.unescape(content)
-        content = content.strip()
-        text=text+" "+content
+#text=""
+#for p in list_p:
+#        content = p.text
+#        content = w3lib.html.remove_tags(content)
+#        content = w3lib.html.replace_escape_chars(content)
+#        content = html.unescape(content)
+#        content = content.strip()
+#        text=text+" "+content
 
-print(text)
+#print(text)
 
 # Get Cursor
-cur = conn.cursor()
+#cur = conn.cursor()
 
-cur.execute("USE Proyectobd;")
+#cur.execute("USE Proyectobd;")
 
-query= f"INSERT INTO noticia (idNoticia,url,nombreMedio,fecha,titulo,contenido) VALUES ('1', '{URL}', 'El Morrocotudo', '2022/07/15', '{title}', '{text}')"
+#query= f"INSERT INTO noticia (idNoticia,url,nombreMedio,fecha,titulo,contenido) VALUES ('1', '{URL}', 'El Morrocotudo', '2022/07/15', '{title}', '{text}')"
 
-cur.execute(query)
-conn.commit()
-conn.close()
+#cur.execute(query)
+#conn.commit()
+#conn.close()
