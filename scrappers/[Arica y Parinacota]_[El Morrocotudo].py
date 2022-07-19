@@ -53,6 +53,7 @@ headers = {'user-agent':random.choice(USER_AGENT_LIST) }
 ## Analizar ("to parse") el contenido
 xpath_title="//div//h1"
 xpath_text="//div[@class='content content-node']//p"
+xpath_date="/html/body/div[1]/div/section/div/div[1]/div[2]/span"
 
 
 
@@ -63,36 +64,41 @@ cur.execute("USE Proyectobd;")
 
 cont = 0
 
-for u in listaURL:
-    response = session.get(u,headers=headers)
+#Fecha de la noticia
+response = session.get(listaURL[0],headers=headers)
+date = response.html.xpath(xpath_date)
+print(date)
 
-    #Titulo de la noticia
-    title = response.html.xpath(xpath_title)[0].text
-    #print(title)
-
-    #Fecha de la noticia
-
-
-    #Texto de la noticia
-    list_p = response.html.xpath(xpath_text)
-
-    text=""
-    for p in list_p:
-            content = p.text
-            content = w3lib.html.remove_tags(content)
-            content = w3lib.html.replace_escape_chars(content)
-            content = html.unescape(content)
-            content = content.strip()
-            text=text+" "+content
-
-    #print(text)
-
-    idNoticia = "El Morrocotudo " + str(cont)
-    query= f"INSERT INTO noticia (idNoticia,url,nombreMedio,fecha,titulo,contenido) VALUES ('{idNoticia}', '{u}', 'El Morrocotudo', '2022/07/15', '{title}', '{text}')"
-
-    cur.execute(query)
-    conn.commit()
-    time.sleep(1)
-    cont += 1
-
-conn.close()
+#for u in listaURL:
+#    response = session.get(u,headers=headers)
+#
+#    #Titulo de la noticia
+#    title = response.html.xpath(xpath_title)[0].text
+#    #print(title)
+#
+#    #Fecha de la noticia
+#
+#
+#    #Texto de la noticia
+#    list_p = response.html.xpath(xpath_text)
+#
+#    text=""
+#    for p in list_p:
+#            content = p.text
+#            content = w3lib.html.remove_tags(content)
+#            content = w3lib.html.replace_escape_chars(content)
+#            content = html.unescape(content)
+#            content = content.strip()
+#            text=text+" "+content
+#
+#    #print(text)
+#
+#    idNoticia = "El Morrocotudo " + str(cont)
+#    query= f"INSERT INTO noticia (idNoticia,url,nombreMedio,fecha,titulo,contenido) VALUES ('{idNoticia}', '{u}', 'El Morrocotudo', #'2022/07/15', '{title}', '{text}')"
+#
+#    cur.execute(query)
+#    conn.commit()
+#    time.sleep(1)
+#    cont += 1
+#
+#conn.close()

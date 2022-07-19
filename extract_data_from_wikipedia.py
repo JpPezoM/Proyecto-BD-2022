@@ -50,26 +50,32 @@ for row in cur:
 
             #resumen wikipedia
             results= wikipedia.search(person)
-            summary= wikipedia.summary(results[0], sentences=3)
+            print(results)
+            if (len(results) > 0):
+                
 
-            #preguntas
-            result = q_a_es(question="¿En qué año nació el o ella?", context=summary)
-            print("Nació en "+result["answer"])
+                summary= wikipedia.summary(results[0], sentences=3)
 
-            result = q_a_es(question="¿Cuál es su profesión?", context=summary)
-            print("Su profesión es "+result["answer"])
+                #preguntas
+                result = q_a_es(question="¿En qué año nació el o ella?", context=summary)
+                print("Nació en "+result["answer"])
 
-            result = q_a_es(question="¿Cuál es su nacionalidad?", context=summary)
-            print("Es "+result["answer"])
+                result = q_a_es(question="¿Cuál es su profesión?", context=summary)
+                print("Su profesión es "+result["answer"])
 
-            result=pageviewapi.per_article('es.wikipedia', person, '20220705', '20220705',
-                            access='all-access', agent='all-agents', granularity='daily')
+                result = q_a_es(question="¿Cuál es su nacionalidad?", context=summary)
+                print("Es "+result["answer"])
 
-            for item in result.items():
-                for article in item[1]:
-                    views=article['views']
-                    print("Su popularidad hoy es: "+str(views)+" visitas en wikipedia español.")
+                # result=pageviewapi.per_article('es.wikipedia', person, '20200705', '20220705',
+                #                 access='all-access', agent='all-agents', granularity='daily')
 
-            print("--------------------")
+                # for item in result.items():
+                #     for article in item[1]:
+                #         views=article['views']
+                #         print("Su popularidad hoy es: "+str(views)+" visitas en wikipedia español.")
+
+                print("--------------------")
+            else:
+                print(person, " no ha sido encontrado en wikipedia")
 
             #print("Nombre: ", ent.text, "Noticia: ", row[1])
