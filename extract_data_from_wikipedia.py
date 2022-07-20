@@ -40,42 +40,75 @@ cur.execute("USE Proyectobd;")
 cur.execute("SELECT contenido, idNoticia FROM noticia")
 print("transformers OK")
 # Show results
-for row in cur:
+idPopularidad = 7
+cursor = cur
+for row in cursor:
     doc = nlp(row[0])
     for ent in doc.ents:
         if (ent.label_ == "PER"):
             #persona mencionada
             person = ent.text
-            print(person)
+            print("Nombre: ", person, " Extraida de la noticia (id): ", row[1])
 
             #resumen wikipedia
             results= wikipedia.search(person)
-            print(results)
+            #print(results)
             if (len(results) > 0):
                 
-
-                summary= wikipedia.summary(results[0], sentences=3)
-
+                try:
+                    summary = wikipedia.summary(results[0], sentences = 3)
+                except wikipedia.DisambiguationError as e:
+                    print("No se pudo concretar la busqueda")
+                    break
+                #print(summary)
                 #preguntas
                 result = q_a_es(question="¿En qué año nació el o ella?", context=summary)
                 print("Nació en "+result["answer"])
+                nacimiento = result["answer"]
 
                 result = q_a_es(question="¿Cuál es su profesión?", context=summary)
                 print("Su profesión es "+result["answer"])
+                profesion = result["answer"]
 
                 result = q_a_es(question="¿Cuál es su nacionalidad?", context=summary)
                 print("Es "+result["answer"])
+                nacionalidad = result["answer"]
 
-                # result=pageviewapi.per_article('es.wikipedia', person, '20200705', '20220705',
-                #                 access='all-access', agent='all-agents', granularity='daily')
+                try:
+                    result=pageviewapi.per_article('es.wikipedia', person, '20210705', '20220705',
+                                access='all-access', agent='all-agents', granularity='monthly')
+                except pageviewapi.client.ZeroOrDataNotLoadedException as e:
+                    break
+                
 
-                # for item in result.items():
-                #     for article in item[1]:
-                #         views=article['views']
-                #         print("Su popularidad hoy es: "+str(views)+" visitas en wikipedia español.")
+                # query= f"INSERT INTO persona VALUES ('{person}', '{nacimiento}', '{profesion}', '{nacionalidad}');"
+                # cur.execute(query)
+                # conn.commit()
+                # query= f"INSERT INTO mencionar VALUES ('{row[1]}', '{person}')"
+                # cur.execute(query)
+                # conn.commit()
+
+                for item in result.items():
+                    for article in item[1]:
+                        views=article['views']
+                        date=article['timestamp']
+                        dateOriginal = date[0:4] + "/" + date[4:6] + "/" + date[6:8]
+                        print("Su popularidad en ", dateOriginal, " es: "+str(views)+" visitas en wikipedia español.")
+                        #query= f"INSERT INTO popularidad VALUES ('{idPopularidad}','{dateOriginal}' , '{str(views)}')"
+                        #cur.execute(query)
+                        #conn.commit()
+                        #query= f"INSERT INTO evaluar VALUES ('{person}' , '{idPopularidad}')"
+                        #cur.execute(query)
+                        #conn.commit()
+                        idPopularidad += 1
+
+
 
                 print("--------------------")
             else:
-                print(person, " no ha sido encontrado en wikipedia")
+                print("No se encontraron resultados")
+                print("--------------------")
+            
 
             #print("Nombre: ", ent.text, "Noticia: ", row[1])
+#conn.close()

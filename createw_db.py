@@ -25,7 +25,7 @@ cur.execute("CREATE TABLE medioPrensa(idioma VARCHAR(100),region VARCHAR(130),pa
 cur.execute("CREATE TABLE dueño(nombre VARCHAR(100) PRIMARY KEY,personaN BOOL)")
 cur.execute("CREATE TABLE administrar(fecha DATE,nombreMedio VARCHAR(100) ,nombreDueño VARCHAR(100),FOREIGN KEY (nombreMedio) REFERENCES medioPrensa(nombre),FOREIGN KEY (nombreDueño) REFERENCES dueño(nombre),PRIMARY KEY(fecha,nombreMedio,nombreDueño))")
 cur.execute("CREATE TABLE noticia(idNoticia VARCHAR(100) PRIMARY KEY, url VARCHAR(2048), nombreMedio VARCHAR(100), fecha DATE, titulo VARCHAR(150), contenido TEXT, FOREIGN KEY (nombreMedio) REFERENCES medioPrensa(nombre))")
-cur.execute("CREATE TABLE persona(nombre VARCHAR(100) PRIMARY KEY, fechaNacimiento DATE, profesion VARCHAR(100), nacionalidad VARCHAR(100))")
+cur.execute("CREATE TABLE persona(nombre VARCHAR(100) PRIMARY KEY, fechaNacimiento VARCHAR(50), profesion VARCHAR(100), nacionalidad VARCHAR(100))")
 cur.execute("CREATE TABLE mencionar(idNoticia VARCHAR(100), nombrePersona VARCHAR(100), FOREIGN KEY (idNoticia) REFERENCES noticia(idNoticia), FOREIGN KEY (nombrePersona) REFERENCES persona(nombre), PRIMARY KEY(idNoticia, nombrePersona))")
 cur.execute("CREATE TABLE popularidad(idPopularidad VARCHAR(100) PRIMARY KEY, fecha DATE, trafico VARCHAR(100))")
 cur.execute("CREATE TABLE evaluar(nombrePersona VARCHAR(100), idPopularidad VARCHAR(100), FOREIGN KEY (nombrePersona) REFERENCES persona(nombre), FOREIGN KEY (idPopularidad) REFERENCES popularidad(idPopularidad), PRIMARY KEY(nombrePersona, idPopularidad))")
