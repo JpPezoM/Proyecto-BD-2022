@@ -1,6 +1,13 @@
 # Proyecto-BD-2022
 ## Nombres:
 Victor Silva, Jorge Andrade, Juan Pablo Pezo.
+## Entregables:
+En los escrapers:
+error en extraer la fecha de las noticias, no se puede sacar los datos <span></span>
+
+El insert_auto.py:
+error en ingresar los datos a la base de datos.
+
 ## Region: 
 XV Arica y Parinacota
 ## Lista de medios de prensa:
