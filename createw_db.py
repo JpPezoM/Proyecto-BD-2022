@@ -30,8 +30,4 @@ cur.execute("CREATE TABLE mencionar(idNoticia VARCHAR(100), nombrePersona VARCHA
 cur.execute("CREATE TABLE popularidad(idPopularidad VARCHAR(100) PRIMARY KEY, fecha DATE, trafico VARCHAR(100))")
 cur.execute("CREATE TABLE evaluar(nombrePersona VARCHAR(100), idPopularidad VARCHAR(100), FOREIGN KEY (nombrePersona) REFERENCES persona(nombre), FOREIGN KEY (idPopularidad) REFERENCES popularidad(idPopularidad), PRIMARY KEY(nombrePersona, idPopularidad))")
 
-cur.execute("describe medioPrensa")
-# Show results
-for row in cur:
-    print(row)
-
+cur.execute("Exit;")
